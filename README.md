@@ -1,7 +1,7 @@
-# Model title
+# DeephERG prediction
 ## Model identifiers
-- Slug:
-- Ersilia ID: 
+- Slug: deepherg
+- Ersilia ID: eos30gr
 - Tags: 
 
 # Model description
