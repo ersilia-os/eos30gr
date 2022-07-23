@@ -1,40 +1,57 @@
-# imports
+import sys
 import os
 import csv
+import tempfile
+import pandas as pd
+import numpy as np
 import joblib
-import sys
 from rdkit import Chem
-from rdkit.Chem.Descriptors import MolWt
+from mol2vec import features
 
-# parse arguments
-input_file = sys.argv[1]
-output_file = sys.argv[2]
+root = os.path.abspath(os.path.dirname(__file__))
 
-# current file directory
-root = os.path.dirname(os.path.abspath(__file__))
+tmp_dir = tempfile.mkdtemp("eos-")
 
-# checkpoints directory
-checkpoints_dir = os.path.abspath(os.path.join(root, "..", "..", "checkpoints"))
+input_file = os.path.abspath(sys.argv[1])
+output_file = os.path.abspath(sys.argv[2])
 
-# read checkpoints (here, simply an integer number: 42)
-ckpt = joblib.load(os.path.join(checkpoints_dir, "checkpoints.joblib"))
-
-# model to be run (here, calculate the Molecular Weight and add ckpt (42) to it)
-def my_model(smiles_list, ckpt):
-    return [MolWt(Chem.MolFromSmiles(smi))+ckpt for smi in smiles_list]
-    
-# read SMILES from .csv file, assuming one column with header
+smiles = []
 with open(input_file, "r") as f:
     reader = csv.reader(f)
-    next(reader) # skip header
-    smiles_list = [r[0] for r in reader]
-    
-# run model
-outputs = my_model(smiles_list, ckpt)
+    next(reader)
+    for r in reader:
+        smiles += [r[0]]
 
-# write output in a .csv file
+mols = []
+for i, smi in enumerate(smiles):
+    mol = Chem.MolFromSmiles(smi)
+    mol.SetProp("MoleculeIdentifier", "id-{0}".format(i))
+    mols += [mol]
+
+sdfile = os.path.join(tmp_dir, "input.sdf")
+writer = Chem.SDWriter(sdfile)
+for mol in mols:
+    if mol is not None:
+        writer.write(mol)
+
+m2vfile = os.path.join(tmp_dir, "m2v.csv")
+m2v_ckpt = os.path.abspath(os.path.join(root, "..", "..", "checkpoints", "model_300dim.pkl"))
+
+features.featurize(sdfile, m2vfile, m2v_ckpt, 1, uncommon=None)
+
+mdl_ckpt = os.path.join(root, "..", "..", "checkpoints", "model.joblib")
+model = joblib.load(mdl_ckpt)
+
+df = pd.read_csv(m2vfile)
+cols = [col for col in list(df.columns) if col.startswith("mol2vec-")]
+X = np.array(df[cols])
+
+assert (X.shape[0] == len(smiles))
+
+y = model.predict(X)
+
 with open(output_file, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["value"]) # header
-    for o in outputs:
-        writer.writerow([o])
+    writer.writerow(["activity80"])
+    for i in range(len(y)):
+        writer.writerow([y[i][0]])
