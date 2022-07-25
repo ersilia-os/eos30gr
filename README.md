@@ -22,7 +22,7 @@ Cai C, Guo P, Zhou Y, et al. Deep Learning-Based Prediction of Drug-Induced Card
 No license available. 
 
 # History 
-- Data was downloaded on 7/13/2022 from deephERG [GitHub] (https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py). 
+- Data was downloaded on 7/13/2022 from deephERG [GitHub](https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py). 
 - We have trained on a single task (blockade 80%) using KerasTuner. Original authors used DeepChem's hyperparameter optimizer.
 
 # About us
