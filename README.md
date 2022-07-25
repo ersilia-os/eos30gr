@@ -5,7 +5,7 @@
 - Tags: hERG, toxicity, ML
 
 # Model description
-Tool for clasifying hERG blockers, using a re-trained version of the deephERG model. 
+Tool for classifying hERG blockers, using a re-trained version of the deephERG model. 
 - Input: Compound
 - Output: Probability of hERG blockade (80%) 
 - Model type: Classification
