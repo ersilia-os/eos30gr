@@ -2,26 +2,27 @@
 ## Model identifiers
 - Slug: deepherg
 - Ersilia ID: eos30gr
-- Tags: 
+- Tags: hERG, toxicity, ML
 
 # Model description
-Short description of the model in one or two sentences.
+Tool for clasifying hERG blockers, using a re-trained version of the deephERG model. 
 - Input: Compound
-- Output: hERG blockade (80%) 
+- Output: Probability of hERG blockade (80%) 
 - Model type: Classification
 - Training set: 12000
 - Mode of training: Retrained.
 
 # Source code
-Cite the source publication.
+Cai C, Guo P, Zhou Y, et al. Deep Learning-Based Prediction of Drug-Induced Cardiotoxicity. J Chem Inf Model 59, 3(2019). https://doi.org/10.1021/acs.jcim.8b00769
+
 - Code: https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py
 - Checkpoints: N/A
 
 # License
-State the licences used which are GPL v3 license used by Ersilia and the license used by the source code, if any exists. Use [this guide]() on how to license new models to be incorporated into Ersilia's model hub 
+No license available. 
 
 # History 
-- State the date when the model was downloaded and incorporated into Ersilia.
+- Data was downloaded on 7/13/2022 from deephERG [GitHub] (https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py). 
 - We have trained on a single task (blockade 80%) using KerasTuner. Original authors used DeepChem's hyperparameter optimizer.
 
 # About us
