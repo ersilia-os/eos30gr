@@ -9,7 +9,11 @@ Tool for classifying hERG blockers, using a re-trained version of the deephERG m
 - Input: Compound
 - Output: Probability of hERG blockade (80%) 
 - Model type: Classification
-- Training set: 12000
+- Train/Test Data: 12978 
+  - Train data: 10384
+  - Test data: 1295
+  - Validation Data: 1299 
+  - This model was trained on a singlge task, blockade 80%. About 88% of training data were positive, and remaining were negative. 
 - Mode of training: Retrained.
 
 # Source code
