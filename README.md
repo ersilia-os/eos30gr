@@ -23,7 +23,7 @@ Cai C, Guo P, Zhou Y, et al. Deep Learning-Based Prediction of Drug-Induced Card
 - Checkpoints: N/A
 
 # License
-No license available. 
+This repository is licensed under a GPLv3 license. It uses the open source libraries Keras Tuner (Apache License) and Mol2Vec (BSD-3-clause license).
 
 # History 
 - Data was downloaded on 7/13/2022 from deephERG [GitHub](https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py). 
