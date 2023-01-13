@@ -7,6 +7,7 @@ RUN conda install -c conda-forge keras=2.8.0
 RUN pip install tensorflow-cpu==2.8
 RUN pip install gensim==3.8.3
 RUN pip install git+https://github.com/samoturk/mol2vec
+RUN pip install standardiser
 
 WORKDIR /repo
 COPY . /repo
