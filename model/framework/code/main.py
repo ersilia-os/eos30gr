@@ -7,6 +7,7 @@ import numpy as np
 import joblib
 from rdkit import Chem
 from mol2vec import features
+from standardiser import standardise
 
 root = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,7 +26,12 @@ with open(input_file, "r") as f:
 mols = []
 for i, smi in enumerate(smiles):
     mol = Chem.MolFromSmiles(smi)
-    mol.SetProp("MoleculeIdentifier", "id-{0}".format(i))
+    mol = standardise.run(mol)
+    if mol is not None:
+        smi = Chem.MolToSmiles(mol)
+        mol = Chem.MolFromSmiles(smi)
+        mol.SetProp("MoleculeIdentifier", "id-{0}".format(i))
+    
     mols += [mol]
 
 sdfile = os.path.join(tmp_dir, "input.sdf")
