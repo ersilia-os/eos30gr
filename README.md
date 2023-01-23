@@ -1,35 +1,40 @@
-# DeephERG prediction
-## Model identifiers
-- Slug: deepherg
-- Ersilia ID: eos30gr
-- Tags: hERG, toxicity, ML
+# Classification of hERG blockers and nonblockers
 
-# Model description
-Tool for classifying hERG blockers, using a re-trained version of the deephERG model. 
-- Input: Compound
-- Output: Probability of hERG blockade (80%) 
-- Model type: Classification
-- Train/Test Data: 12978 
-  - Train data: 10384
-  - Test data: 1295
-  - Validation Data: 1299 
-  - This model was trained on a single task, blockade 80%. About 88% of training data were positive, and remaining were negative. 
-- Mode of training: Retrained.
+This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (% of hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple KerasTuner. Molecule featurization was done with Mol2vec, accordingly to the original model.
 
-# Source code
-Cai C, Guo P, Zhou Y, et al. Deep Learning-Based Prediction of Drug-Induced Cardiotoxicity. J Chem Inf Model 59, 3(2019). https://doi.org/10.1021/acs.jcim.8b00769
+## Identifiers
 
-- Code: https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py
-- Checkpoints: N/A
+* EOS model ID: `eos30gr`
+* Slug: `deepherg`
 
-# License
-This repository is licensed under a GPLv3 license. It uses the open source libraries Keras Tuner (Apache License) and Mol2Vec (BSD-3-clause license).
+## Characteristics
 
-# History 
-- Data was downloaded on 7/13/2022 from deephERG [GitHub](https://github.com/ChengF-Lab/deephERG/blob/master/deephERG.py). 
-- We have trained on a single task (blockade 80%) using KerasTuner. Original authors used DeepChem's hyperparameter optimizer.
+* Input: `Compound`
+* Input Shape: `Single`
+* Task: `Classification`
+* Output: `Probability`
+* Output Type: `Float`
+* Output Shape: `Single`
+* Interpretation: Probability of hERG blockade. The training dataset used a threshold of 80% inhibition to define hERG blockers.
 
-# About us
+## References
+
+* [Publication](https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769)
+* [Source Code](https://github.com/ChengF-Lab/deephERG)
+* Ersilia contributor: [azycn](https://github.com/azycn)
+
+## Citation
+
+If you use this model, please cite the [original authors](https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769) of the model and the [Ersilia Model Hub](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff).
+
+## License
+
+This package is licensed under a GPL-3.0 license. The model contained within this package is licensed under a None license.
+
+Notice: Ersilia grants access to these models 'as is' provided by the original authors, please refer to the original code repository and/or publication if you use the model in your research.
+
+## About Us
+
 The [Ersilia Open Source Initiative](https://ersilia.io) is a Non Profit Organization ([1192266](https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5170657/full-print)) with the mission is to equip labs, universities and clinics in LMIC with AI/ML tools for infectious disease research.
 
-[Help us](https://www.ersilia.io/donate) achieve our mission or [volunteer](https://www.ersilia.io/volunteer) with us!
+[Help us](https://www.ersilia.io/donate) achieve our mission!
