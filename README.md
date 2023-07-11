@@ -23,6 +23,9 @@ This model used a multitask deep neural network (DNN) to predict the probability
 * [Source Code](https://github.com/ChengF-Lab/deephERG)
 * Ersilia contributor: [azycn](https://github.com/azycn)
 
+## Ersilia model URLs
+* [GitHub](https://github.com/ersilia-os/eos30gr)
+
 ## Citation
 
 If you use this model, please cite the [original authors](https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769) of the model and the [Ersilia Model Hub](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff).
