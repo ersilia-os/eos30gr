@@ -149,7 +149,7 @@ class Artifact(BentoServiceArtifact):
 @artifacts([Artifact("model")])
 class Service(BentoService):
     @api(input=JsonInput(), batch=True)
-    def run(self, input: Lists[JsonSerializable]): # <-- EDIT: rename if necessary 
+    def run(self, input: List[JsonSerializable]): # <-- EDIT: rename if necessary 
         input = input[0]
         smiles_list = [inp["input"] for inp in input]
         output = self.artifacts.model.run(smiles_list) # <-- EDIT: rename if necessary
