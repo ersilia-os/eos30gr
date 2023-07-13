@@ -16,16 +16,12 @@ root = os.path.abspath(os.path.dirname(__file__))
 
 tmp_dir = tempfile.mkdtemp("eos-")
 
-# input_file = os.path.abspath(sys.argv[1])
-# output_file = os.path.abspath(sys.argv[2])
-
 smiles = []
 with open(input_file, "r") as f:
     reader = csv.reader(f)
     next(reader)
     for r in reader:
         smiles += [r[0]]
-        print(smiles)
 
 mols = []
 for i, smi in enumerate(smiles):
