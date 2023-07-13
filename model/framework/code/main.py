@@ -9,12 +9,12 @@ from rdkit import Chem
 from mol2vec import features
 from standardiser import standardise
 
-input_file = sys.argv[1]
-output_file = sys.argv[2]
-
 root = os.path.abspath(os.path.dirname(__file__))
 
 tmp_dir = tempfile.mkdtemp("eos-")
+
+input_file = os.path.abspath(sys.argv[1])
+output_file = os.path.abspath(sys.argv[2])
 
 smiles = []
 with open(input_file, "r") as f:
