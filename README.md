@@ -25,6 +25,8 @@ This model used a multitask deep neural network (DNN) to predict the probability
 
 ## Ersilia model URLs
 * [GitHub](https://github.com/ersilia-os/eos30gr)
+* [AWS S3](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip)
+* [DockerHub](https://hub.docker.com/r/ersiliaos/eos30gr) (AMD64, ARM64)
 
 ## Citation
 

@@ -6,10 +6,11 @@ import pandas as pd
 import numpy as np
 import joblib
 from rdkit import Chem
-from mol2vec import features
+from rdkit.Chem.ChemUtils import SDFToCSV
 from standardiser import standardise
+from lazyqsar.binary.morgan import MorganBinaryClassifier
 
-root = os.path.abspath(os.path.dirname(__file__))
+root = os.path.abspath(os.path.dirname(__file__)) 
 
 tmp_dir = tempfile.mkdtemp("eos-")
 
@@ -35,29 +36,32 @@ for i, smi in enumerate(smiles):
     mols += [mol]
 
 sdfile = os.path.join(tmp_dir, "input.sdf")
-writer = Chem.SDWriter(sdfile)
-for mol in mols:
-    if mol is not None:
-        writer.write(mol)
+with open(sdfile, 'w') as file:
+    writer = Chem.SDWriter(sdfile)
+    for mol in mols:
+        if mol is not None:
+            writer.write(mol)
+    writer.close()
 
-m2vfile = os.path.join(tmp_dir, "m2v.csv")
-m2v_ckpt = os.path.abspath(os.path.join(root, "..", "..", "checkpoints", "model_300dim.pkl"))
+# convert from SDF to CSV file
+sdfile_in = Chem.SDMolSupplier(sdfile)
+csvfile = open(os.path.join(tmp_dir, "input.csv"), 'w')
+SDFToCSV.Convert(sdfile_in, csvfile, keyCol=None, stopAfter=- 1, includeChirality=False, smilesFrom='')
+csvfile.close()
 
-features.featurize(sdfile, m2vfile, m2v_ckpt, 1, uncommon=None)
-
+# load saved model
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints", "model.joblib")
 model = joblib.load(mdl_ckpt)
 
-df = pd.read_csv(m2vfile)
-cols = [col for col in list(df.columns) if col.startswith("mol2vec-")]
-X = np.array(df[cols])
+df = pd.read_csv(os.path.join(tmp_dir, "input.csv"))
+X = list(df["SMILES"])
+y = model.predict_proba(X)
 
-assert (X.shape[0] == len(smiles))
+y = y[:,1]
 
-y = model.predict(X)
-
+# write output in a .csv files
 with open(output_file, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["activity80"])
+    writer.writerow(["activity10"])
     for i in range(len(y)):
-        writer.writerow([y[i][0]])
+        writer.writerow([y[i]])
