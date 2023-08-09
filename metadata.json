@@ -28,5 +28,11 @@
     "Publication": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769",
     "Source Code": "https://github.com/ChengF-Lab/deephERG",
     "License": "None",
-    "Contributor": "azycn"
+    "Contributor": "azycn",
+    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip",
+    "DockerHub": "https://hub.docker.com/r/ersiliaos/eos30gr",
+    "Docker Architecture": [
+        "AMD64",
+        "ARM64"
+    ]
 }
