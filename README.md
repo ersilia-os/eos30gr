@@ -1,6 +1,6 @@
 # Classification of hERG blockers and nonblockers
 
-This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50 for hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple Random Forest Classifier using the Lazy QSAR package developed by Ersilia.
+This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (% of hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple KerasTuner. Molecule featurization was done with Mol2vec, accordingly to the original model.
 
 ## Identifiers
 
@@ -15,13 +15,13 @@ This model used a multitask deep neural network (DNN) to predict the probability
 * Output: `Probability`
 * Output Type: `Float`
 * Output Shape: `Single`
-* Interpretation: Probability of hERG blockade. The training dataset used a threshold of IC50<= 10 uM.
+* Interpretation: Probability of hERG blockade. The training dataset used a threshold of 80% inhibition to define hERG blockers.
 
 ## References
 
 * [Publication](https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769)
 * [Source Code](https://github.com/ChengF-Lab/deephERG)
-* Ersilia contributor: [febielin](https://github.com/febielin)
+* Ersilia contributor: [azycn](https://github.com/azycn)
 
 ## Ersilia model URLs
 * [GitHub](https://github.com/ersilia-os/eos30gr)

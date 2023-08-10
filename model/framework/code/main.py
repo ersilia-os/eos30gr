@@ -35,28 +35,16 @@ for i, smi in enumerate(smiles):
     
     mols += [mol]
 
-sdfile = os.path.join(tmp_dir, "input.sdf")
-with open(sdfile, 'w') as file:
-    writer = Chem.SDWriter(sdfile)
-    for mol in mols:
-        if mol is not None:
-            writer.write(mol)
-    writer.close()
-
-# convert from SDF to CSV file
-sdfile_in = Chem.SDMolSupplier(sdfile)
-csvfile = open(os.path.join(tmp_dir, "input.csv"), 'w')
-SDFToCSV.Convert(sdfile_in, csvfile, keyCol=None, stopAfter=- 1, includeChirality=False, smilesFrom='')
-csvfile.close()
-
 # load saved model
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints", "model.joblib")
 model = joblib.load(mdl_ckpt)
 
-df = pd.read_csv(os.path.join(tmp_dir, "input.csv"))
-X = list(df["SMILES"])
-y = model.predict_proba(X)
+with open(input_file, "r") as f:
+    reader = csv.reader(f)
+    next(reader)  # skip header
+    X = [r[0] for r in reader]
 
+y = model.predict_proba(X)
 y = y[:,1]
 
 # write output in a .csv files
