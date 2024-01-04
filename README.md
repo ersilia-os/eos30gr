@@ -1,6 +1,6 @@
 # Classification of hERG blockers and nonblockers
 
-This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (% of hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple KerasTuner. Molecule featurization was done with Mol2vec, accordingly to the original model.
+This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (% of hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple KerasTuner. Molecule featurization was done with Morgan fingerprints.
 
 ## Identifiers
 
