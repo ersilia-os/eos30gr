@@ -17,23 +17,6 @@ tmp_dir = tempfile.mkdtemp("eos-")
 input_file = os.path.abspath(sys.argv[1])
 output_file = os.path.abspath(sys.argv[2])
 
-smiles = []
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader)
-    for r in reader:
-        smiles += [r[0]]
-
-mols = []
-for i, smi in enumerate(smiles):
-    mol = Chem.MolFromSmiles(smi)
-    mol = standardise.run(mol)
-    if mol is not None:
-        smi = Chem.MolToSmiles(mol)
-        mol = Chem.MolFromSmiles(smi)
-        mol.SetProp("MoleculeIdentifier", "id-{0}".format(i))
-    
-    mols += [mol]
 
 # load saved model
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints", "model.joblib")
