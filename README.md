@@ -1,6 +1,6 @@
 # Classification of hERG blockers and nonblockers
 
-This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (% of hERG inhibition). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple KerasTuner. Molecule featurization was done with Morgan fingerprints.
+This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using a simple Random Forest. Molecule featurization was done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. 
 
 ## Identifiers
 
@@ -15,7 +15,7 @@ This model used a multitask deep neural network (DNN) to predict the probability
 * Output: `Probability`
 * Output Type: `Float`
 * Output Shape: `Single`
-* Interpretation: Probability of hERG blockade. The training dataset used a threshold of 80% inhibition to define hERG blockers.
+* Interpretation: Probability of hERG blockade. Actives are defined as IC50<10, inactives are defined as IC50>80
 
 ## References
 
