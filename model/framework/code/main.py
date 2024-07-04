@@ -2,7 +2,9 @@ import sys
 import os
 import csv
 import numpy as np
+import deepchem as dc
 import joblib
+from ..train.train import model_builder
 
 
 root = os.path.abspath(os.path.dirname(__file__)) 
@@ -16,9 +18,12 @@ with open(input_file, "r") as f:
     X = [r[0] for r in reader]
 
 
-mdl_ckpt = os.path.join(root, "..", "..", "checkpoints", f"model_80.joblib")
-model = joblib.load(mdl_ckpt)
-y = model.predict_proba(X)[:,1]
+# Restore the model from the checkpoint and run prediction on decoy threshold of 80 μM
+mdl_ckpt = os.path.join(root, "..", "..", "checkpoints")
+model = model_builder(mdl_ckpt)
+model.restore(model_dir=mdl_ckpt, checkpoint=None)
+y = model.predict(X)[:, 4, 1]
+
 
 # write output in a .csv files
 with open(output_file, "w") as f:
