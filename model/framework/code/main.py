@@ -18,7 +18,7 @@ output_file = os.path.abspath(sys.argv[2])
 with open(input_file, "r") as f:
     reader = csv.reader(f)
     next(reader)  # Skip header
-    smiles = [r[1] for r in reader]
+    smiles = [r[0] for r in reader]
 
 # Define the columns for the CSV data
 columns = ['smiles', 'activity10', 'activity20', 'activity40', 'activity60', 'activity80', 'activity100']
@@ -63,11 +63,11 @@ def model(model_dir, **model_params):
     return model
 
 
-# Restore the model from the checkpoint and run prediction on decoy threshold of 80 μM
+# Restore the model from the checkpoint and run prediction on negative decoy threshold of 80 μM
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints")
 model = model(mdl_ckpt)
 model.restore(model_dir=mdl_ckpt, checkpoint=None)
-y = model.predict(dataset)[:, 4, 1]
+y = model.predict(dataset)[:, 0, 0]
 
 
 # write output in a .csv files
