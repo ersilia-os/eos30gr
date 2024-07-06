@@ -2,7 +2,6 @@ import random
 import pandas as pd
 import numpy as np
 import deepchem as dc
-import tensorflow as tf
 
 
 from deepchem.models import MultitaskClassifier
@@ -14,10 +13,9 @@ from deepchem.utils.evaluate import Evaluator
 
 
 np.random.seed(42)
-tf.random.set_seed(42)
 random.seed(42)
 
-featurizer = dc.feat.CircularFingerprint(radius=2, size=1024)
+featurizer = dc.feat.CircularFingerprint(size=1024)
 loader = dc.data.CSVLoader(tasks=['activity10', 'activity20', 'activity40',
                                   'activity60', 'activity80', 'activity100'],
                                     smiles_field="Smiles", featurizer=featurizer)
@@ -57,19 +55,19 @@ matthews_metrics = dc.metrics.Metric(dc.metrics.matthews_corrcoef, np.mean)
 
 def model_builder(model_dir, **model_params):
     n_layers = 3
+    n_tasks = len(train_dataset.y[0])
     n_features = train_dataset.X.shape[1]
-    tasks=['activity10', 'activity20', 'activity40', 'activity60', 'activity80', 'activity100']
 
     model = dc.models.MultitaskClassifier(
-        n_tasks=len(tasks),
+        n_tasks=n_tasks,
         n_features=n_features,
         layer_sizes=[200, 100, 50],
         dropouts=[.25] * n_layers,
         weight_init_stddevs=[.02] * n_layers,
         bias_init_consts=[1.] * n_layers,
         batch_size=256,
-        optimizer=Adam(learning_rate=0.001),
-        penalty_type="l2"
+        optimizer=Adam(learning_rate=1e-3),
+        penalty_type="l2",
     )
 
     return model
@@ -78,10 +76,8 @@ def model_builder(model_dir, **model_params):
 # Train the model   
 print("Starting Multi-Task-DNN")
 
-shard_size = 2000
 num_trials = 1
 all_results = []
-
 
 for trial in range(num_trials):
     print("Starting trial %d" % trial)

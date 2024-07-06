@@ -33,19 +33,19 @@ with tempfile.NamedTemporaryFile(mode='w+', delete=False, newline='') as temp_fi
     temp_file_name = temp_file.name
 
 # Define the featurizer used in training 
-featurizer = dc.feat.CircularFingerprint(radius=2, size=2048)
+featurizer = dc.feat.CircularFingerprint(size=1024)
 loader = dc.data.CSVLoader(tasks=['activity10', 'activity20', 'activity40',
                                   'activity60', 'activity80', 'activity100'],
                                     feature_field="smiles", featurizer=featurizer)
 
 
 # create dataset with from featurized input file 
-dataset = loader.create_dataset(temp_file_name, shard_size=8192)
+dataset = loader.create_dataset(temp_file_name)
 
 # The model
 def model(model_dir, **model_params):
     n_layers = 3
-    n_features = 2048
+    n_features = 1024
     tasks=['activity10', 'activity20', 'activity40', 'activity60', 'activity80', 'activity100']
 
     model = dc.models.MultitaskClassifier(
@@ -56,14 +56,14 @@ def model(model_dir, **model_params):
         weight_init_stddevs=[.02] * n_layers,
         bias_init_consts=[1.] * n_layers,
         batch_size=256,
-        optimizer=Adam(learning_rate=0.001),
+        optimizer=Adam(learning_rate=1e-3),
         penalty_type="l2"
     )
 
     return model
 
 
-# Restore the model from the checkpoint and run prediction on negative decoy threshold of 80 μM
+# Restore the model from the checkpoint and run prediction on decoy threshold of 80 μM
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints")
 model = model(mdl_ckpt)
 model.restore(model_dir=mdl_ckpt, checkpoint=None)
@@ -77,3 +77,4 @@ with open(output_file, "w") as f:
     writer.writerow(["activity_80"])
     for i in range(len(y)):
         writer.writerow([y[i]])
+
