@@ -17,15 +17,15 @@ np.random.seed(42)
 tf.random.set_seed(42)
 random.seed(42)
 
-featurizer = dc.feat.CircularFingerprint(radius=2, size=2048)
+featurizer = dc.feat.CircularFingerprint(radius=2, size=1024)
 loader = dc.data.CSVLoader(tasks=['activity10', 'activity20', 'activity40',
                                   'activity60', 'activity80', 'activity100'],
                                     smiles_field="Smiles", featurizer=featurizer)
 
 # Creating  deepchem datasets
-dataset_train = loader.create_dataset('/data/training_set.csv', shard_size=8192)
-dataset_test = loader.create_dataset('/data/test_set.csv', shard_size=8192)
-dataset_validation = loader.create_dataset('/data/validation_set.csv', shard_size=8192)
+dataset_train = loader.create_dataset('/data/training_set.csv')
+dataset_test = loader.create_dataset('/data/test_set.csv')
+dataset_validation = loader.create_dataset('/data/validation_set.csv')
 
 
 # Utilizing the balancing transformer utility in deepchem to ensure dataset balance

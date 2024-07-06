@@ -67,7 +67,8 @@ def model(model_dir, **model_params):
 mdl_ckpt = os.path.join(root, "..", "..", "checkpoints")
 model = model(mdl_ckpt)
 model.restore(model_dir=mdl_ckpt, checkpoint=None)
-y = model.predict(dataset)[:, 0, 0]
+y_pred = model.predict(dataset)
+y = [row[4][1] for row in y_pred]
 
 
 # write output in a .csv files
