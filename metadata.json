@@ -3,22 +3,19 @@
     "Slug": "deepherg",
     "Status": "Ready",
     "Title": "Classification of hERG blockers and nonblockers",
-    "Description": "This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using the same method but without mol2vec featuriztion. Molecule featurization was instead done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. \n",
+    "Description": "This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using the same method but without mol2vec featuriztion. Molecule featurization was instead done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. ",
+    "Deployment": [
+        "Local"
+    ],
     "Source": "Local",
     "Source Type": "External",
+    "Task": "Annotation",
+    "Subtask": "Activity prediction",
     "Input": [
         "Compound"
     ],
-    "Input Shape": "Single",
     "Input Dimension": 1,
-    "Task": "Annotation",
-    "Subtask": "Activity prediction",
-    "Biomedical Area": [
-        "ADMET"
-    ],
-    "Target Organism": [
-        "Homo sapiens"
-    ],
+    "Input Shape": "Single",
     "Output": [
         "Probability"
     ],
@@ -30,20 +27,23 @@
         "hERG",
         "Cardiotoxicity"
     ],
-    "Publication": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769",
+    "Biomedical Area": [
+        "ADMET"
+    ],
+    "Target Organism": [
+        "Homo sapiens"
+    ],
     "Publication Type": "Peer reviewed",
     "Publication Year": 2019,
+    "Publication": "https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769",
     "Source Code": "https://github.com/ChengF-Lab/deephERG",
     "License": "None",
     "Contributor": "azycn",
-    "Incorporation Date": "2022-07-22",
+    "Incorporation Date": "2022-07-14",
+    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos30gr",
     "Docker Architecture": [
         "AMD64",
         "ARM64"
-    ],
-    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip",
-    "Deployment": [
-        "Local"
     ]
 }
