@@ -2,7 +2,7 @@
 
 This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using the same method but without mol2vec featuriztion. Molecule featurization was instead done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. 
 
-This model was incorporated on 2022-07-22.
+This model was incorporated on 2022-07-14.
 
 ## Information
 ### Identifiers
@@ -39,6 +39,8 @@ Below are the **Output Columns** of the model:
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip)
 
 ### Resource Consumption
+- **Model Size (Mb):** `41`
+- **Environment Size (Mb):** `5949`
 
 
 ### References
