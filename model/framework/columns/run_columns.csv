@@ -1,0 +1,2 @@
+name,type,direction,description
+activity_80,float,high,Probability of hERG blockade with actives defined as IC50<10 and inactives as IC50>80
