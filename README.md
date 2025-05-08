@@ -41,8 +41,12 @@ Below are the **Output Columns** of the model:
 ### Resource Consumption
 - **Model Size (Mb):** `41`
 - **Environment Size (Mb):** `5949`
-- **Image Size (Mb):** `5822.81`
+- **Image Size (Mb):** `5822.72`
 
+**Computational Performance (seconds):**
+- 10 inputs: `41.3`
+- 100 inputs: `31.37`
+- 10000 inputs: `790.34`
 
 ### References
 - **Source Code**: [https://github.com/ChengF-Lab/deephERG](https://github.com/ChengF-Lab/deephERG)
