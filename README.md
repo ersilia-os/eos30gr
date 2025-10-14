@@ -2,8 +2,7 @@
 
 This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using the same method but without mol2vec featuriztion. Molecule featurization was instead done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. 
 
-This model was incorporated on 2022-07-14.
-
+This model was incorporated on 2022-07-14.Last packaged on 2025-10-14.
 
 ## Information
 ### Identifiers
@@ -42,12 +41,12 @@ Below are the **Output Columns** of the model:
 ### Resource Consumption
 - **Model Size (Mb):** `41`
 - **Environment Size (Mb):** `5967`
-- **Image Size (Mb):** `5822.72`
+- **Image Size (Mb):** `5914.25`
 
 **Computational Performance (seconds):**
-- 10 inputs: `41.3`
-- 100 inputs: `31.37`
-- 10000 inputs: `790.34`
+- 10 inputs: `33.2`
+- 100 inputs: `23.01`
+- 10000 inputs: `262.26`
 
 ### References
 - **Source Code**: [https://github.com/ChengF-Lab/deephERG](https://github.com/ChengF-Lab/deephERG)
