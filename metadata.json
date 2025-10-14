@@ -39,6 +39,8 @@
     "License": "None",
     "Contributor": "azycn",
     "Incorporation Date": "2022-07-14",
+    "Last Packaging Date": "2025-10-14",
+    "Release": "v1.0.0",
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos30gr",
     "Docker Architecture": [
@@ -47,12 +49,12 @@
     ],
     "Model Size": 41.0,
     "Environment Size": 5967.0,
-    "Image Size": 5822.72,
-    "Computational Performance 1": 41.3,
-    "Computational Performance 2": 30.98,
-    "Computational Performance 3": 31.37,
-    "Computational Performance 4": 169.24,
-    "Computational Performance 5": 790.34,
+    "Image Size": 5914.25,
+    "Computational Performance 1": 33.2,
+    "Computational Performance 2": 23.03,
+    "Computational Performance 3": 23.01,
+    "Computational Performance 4": 65.34,
+    "Computational Performance 5": 262.26,
     "Input Shape": "Single",
     "Docker Pack Method": "FastAPI"
 }
