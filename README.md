@@ -50,7 +50,7 @@ Below are the **Output Columns** of the model:
 
 ### References
 - **Source Code**: [https://github.com/ChengF-Lab/deephERG](https://github.com/ChengF-Lab/deephERG)
-- **Publication**: [https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769](https://pubs.acs.org/doi/full/10.1021/acs.jcim.8b00769)
+- **Publication**: [https://doi.org/10.1021/acs.jcim.8b00769](https://doi.org/10.1021/acs.jcim.8b00769)
 - **Publication Type:** `Peer reviewed`
 - **Publication Year:** `2019`
 - **Ersilia Contributor:** [azycn](https://github.com/azycn)
