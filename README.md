@@ -1,6 +1,6 @@
 # Classification of hERG blockers and nonblockers
 
-This model used a multitask deep neural network (DNN) to predict the probability that a molecule is a hERG blocker. It was trained using 7889 compounds with experimental data available (IC50). The checkpoints of the pretrained model were not available, therefore we re-trained the model using the same method but without mol2vec featuriztion. Molecule featurization was instead done with Morgan fingerprints. Six models were tested, with several thresholds for negative decoys (10, 20, 40, 60, 80 and 100 uM). The authors have implemented the 80uM cut-off for negatives. 
+Separates hERG blockers from non-blockers using deephERG, built by Cai and colleagues from a large set of compounds with reported channel activity. Rather than a single cut-off, the training labels used a deliberate gap: compounds with IC50 below 10 uM count as actives and those above 80 uM as inactives, leaving ambiguous intermediate potencies out of the fit. That choice sharpens the decision boundary but means the model has never seen the borderline chemistry where cardiac risk is often hardest to call.
 
 This model was incorporated on 2022-07-14.Last packaged on 2025-10-14.
 
@@ -23,7 +23,7 @@ This model was incorporated on 2022-07-14.Last packaged on 2025-10-14.
 ### Output
 - **Output Dimension:** `1`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Probability of hERG blockade. Actives are defined as IC50<10, inactives are defined as IC50>80
+- **Interpretation:** Probability of hERG blockade, with actives defined below 10 uM and inactives above 80 uM.
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
