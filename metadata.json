@@ -3,7 +3,7 @@
     "Slug": "deepherg",
     "Status": "Ready",
     "Title": "Classification of hERG blockers and nonblockers",
-    "Description": "Separates hERG blockers from non-blockers using deephERG, built by Cai and colleagues from a large set of compounds with reported channel activity. Rather than a single cut-off, the training labels used a deliberate gap: compounds with IC50 below 10 uM count as actives and those above 80 uM as inactives, leaving ambiguous intermediate potencies out of the fit. That choice sharpens the decision boundary but means the model has never seen the borderline chemistry where cardiac risk is often hardest to call.",
+    "Description": "Separates hERG blockers from non-blockers with the deephERG approach of Cai and colleagues, assembled from 7,889 compounds carrying well-defined experimental channel activity. Rather than a single cut-off the labels leave a deliberate gap, counting an IC50 below 10 uM as active and above 80 uM as inactive, so the borderline chemistry where cardiac risk is hardest to call never enters the fit. Ersilia retrained the multitask neural network because no checkpoint was released, swapping the original mol2vec featurisation for 1024-bit Morgan fingerprints.",
     "Deployment": [
         "Local"
     ],
