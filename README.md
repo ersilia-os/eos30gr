@@ -2,7 +2,8 @@
 
 Separates hERG blockers from non-blockers with the deephERG approach of Cai and colleagues, assembled from 7,889 compounds carrying well-defined experimental channel activity. Rather than a single cut-off the labels leave a deliberate gap, counting an IC50 below 10 uM as active and above 80 uM as inactive, so the borderline chemistry where cardiac risk is hardest to call never enters the fit. Ersilia retrained the multitask neural network because no checkpoint was released, swapping the original mol2vec featurisation for 1024-bit Morgan fingerprints.
 
-This model was incorporated on 2022-07-14.Last packaged on 2025-10-14.
+This model was incorporated on 2022-07-14.
+Last packaged on 2025-10-14.
 
 ## Information
 ### Identifiers
@@ -37,6 +38,7 @@ Below are the **Output Columns** of the model:
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos30gr](https://hub.docker.com/r/ersiliaos/eos30gr)
 - **Docker Architecture:** `AMD64`, `ARM64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos30gr.zip)
+- **Apptainer**: [https://models-sif.s3.eu-north-1.amazonaws.com/eos30gr_v1.sif](https://models-sif.s3.eu-north-1.amazonaws.com/eos30gr_v1.sif)
 
 ### Resource Consumption
 - **Model Size (Mb):** `41`
