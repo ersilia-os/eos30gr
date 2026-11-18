@@ -47,6 +47,7 @@
         "AMD64",
         "ARM64"
     ],
+    "Apptainer": "https://models-sif.s3.eu-north-1.amazonaws.com/eos30gr_v1.sif",
     "Model Size": 41.0,
     "Environment Size": 5967.0,
     "Image Size": 5914.25,
